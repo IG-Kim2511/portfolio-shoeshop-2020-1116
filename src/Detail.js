@@ -37,7 +37,7 @@ function Detail(props) {
   let [스위치, 스위치변경] = useState(false);
 
 
-  let 재고 = useContext(remainingContext);
+  let remaining = useContext(remainingContext);
 
   useEffect(() => {
 
@@ -113,7 +113,7 @@ function Detail(props) {
       {/* {
         alert === true
           ? (<div className="my-alert2">
-            <p>재고가 얼마 남지 않았습니다</p>
+            <p>remaining가 얼마 남지 않았습니다</p>
           </div>)
           : null
       } */}
@@ -131,12 +131,12 @@ function Detail(props) {
           <p>{찾은상품.price}원</p>
 
 
-          <Info 재고={props.재고}></Info>
+          <Info remaining={props.remaining}></Info>
 
 
           <button className="btn btn-danger" onClick={() => { 
 
-            props.재고변경([9, 11, 12]);
+            props.setRemaining([9, 11, 12]);
             props.dispatch({type : '항목추가', 데이터 : {id:찾은상품.id, name:찾은상품.title, quan:1} });
             history.push('/cart');
             
@@ -186,7 +186,7 @@ function TabContent(props){
 
 function Info(props) {
   return (
-    <p>재고 : {props.재고[0]}</p>
+    <p>remaining : {props.remaining[0]}</p>
   )
 }
 
