@@ -4,7 +4,7 @@ import React, {useState, useEffect, useContext, lazy, Suspense} from 'react';
 import { Navbar,Nav,NavDropdown,Button,Jumbotron,Alert } from 'react-bootstrap';
 import './App.css';
 import Data from './data.js';
-// import Detail from './Detail.js';
+
 let Detail = lazy(()=> import('./Detail.js') );
 
 import axios from 'axios';
@@ -20,7 +20,7 @@ function App() {
 
   let [shoes, setShoes] = useState(Data);
   let [remaining,setRemaining] = useState([10,11,12]);
-  let [cart, setCart] = useState([{ id : 0, name : '이쁜신발', quan : 1}]);
+  let [cart, setCart] = useState([{ id : 0, name : 'newshoe', quan : 1}]);
 
   return (
 
@@ -69,17 +69,17 @@ function App() {
               setShoes( [...shoes, ...result.data ] );
             })
             .catch(()=>{ 
-              console.log('실패했어요')
+              console.log('failed')
             })
 
-           }}>더보기</button>
+           }}>more</button>
         </div>
       </Route>
 
       <Route path="/detail/:id">
 
         <remainingContext.Provider value={remaining}>
-          <Suspense fallback={<div>로딩중이에요</div>}>
+          <Suspense fallback={<div>loading</div>}>
             <Detail shoes={shoes} remaining={remaining} setRemaining={setRemaining}/>
           </Suspense>
          </remainingContext.Provider>

@@ -12,7 +12,7 @@ import { createStore, combineReducers } from 'redux';
 let alert초기값 = true;
 
 function reducer2(state = alert초기값, 액션) {
-  if (액션.type === 'alert닫기') {
+  if (액션.type === 'alert') {
     state = false;
     return state;
   } else {
@@ -20,10 +20,6 @@ function reducer2(state = alert초기값, 액션) {
   }
 
 }
-
-
-
-
 
 
 
@@ -36,8 +32,8 @@ let 초기값 = [
 function reducer(state = 초기값, 액션) {
   if (액션.type === '항목추가') {
 
-    //state안에 id : 액션.데이터 인게 있냐?
-    let found = state.findIndex((a)=>{ return a.id === 액션.데이터.id });
+    //state안에 id : 액션.data 인게 있냐?
+    let found = state.findIndex((a)=>{ return a.id === 액션.data.id });
 
     if ( found >= 0 ){
 
@@ -47,29 +43,29 @@ function reducer(state = 초기값, 액션) {
 
     } else {
       let copy = [...state];
-      copy.push(액션.데이터);
+      copy.push(액션.data);
       return copy
     }
 
     
 
-  } else if (액션.type === '수량증가') {
+  } else if (액션.type === 'add') {
 
     let copy = [...state];
-    copy[액션.데이터].quan++;
+    copy[액션.data].quan++;
     return copy
 
 
-  } else if (액션.type === '수량감소') {
+  } else if (액션.type === 'subtract') {
     let copy = [...state];
-    copy[액션.데이터].quan--;
+    copy[액션.data].quan--;
     return copy
   } 
   
   //여기부터 테스트
   // else if ( 액션.type === '테스트입력') {
   //   let copy = [...state] ; 
-  //   copy[2] = 액션.데이터;
+  //   copy[2] = 액션.data;
   //   return copy 
   // }
   
@@ -151,7 +147,7 @@ serviceWorker.register();
 // }
 
 
-// let found = state.findIndex(a => a.id === 액션.데이터.id );
+// let found = state.findIndex(a => a.id === 액션.data.id );
 // if ( found >= 0 ) {
 //   let copy = [...state];
 //   copy[found].quan++

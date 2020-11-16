@@ -3,10 +3,12 @@ $메인칼라 : black;
 
 .wow-enter {
   opacity: 0;
+  background-color: blue;
 }
 .wow-enter-active {
   opacity: 1;
   transition: all 500ms;
+  background-color: red;
 }
 
 
