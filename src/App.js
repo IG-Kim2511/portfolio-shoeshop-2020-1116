@@ -43,7 +43,7 @@ function App() {
         <Jumbotron className="background">
           <h1>choose a shoes and order it. </h1>
           <p>
-         Skills : react, redux, react-bootstrap
+         Skills : react, redux, react-bootstrap, Sass
           </p>    
         </Jumbotron>
 

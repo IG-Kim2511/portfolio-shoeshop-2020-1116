@@ -9,31 +9,31 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 
-let alert초기값 = true;
 
-function reducer2(state = alert초기값, 액션) {
-  if (액션.type === 'alert') {
+// 👉Detail.js
+let initialAlert = true;
+
+function reducer2(state = initialAlert, action) {
+  if (action.type === 'alert') {
     state = false;
     return state;
   } else {
     return state
   }
-
 }
 
 
+// 👉Detail.js
+let initialState = [
+  { id: 0, name: 'shoes', quan: 2 },
+  { id: 1, name: 'shoes2', quan: 1 },
 
-let 초기값 = [
-  { id: 0, name: '멋진신발', quan: 2 },
-  { id: 1, name: '멋진신발2', quan: 1 },
-  //'테스트인풋'
 ];
 
-function reducer(state = 초기값, 액션) {
-  if (액션.type === '항목추가') {
+function reducer(state = initialState, action) {
+  if (action.type === 'addshoes') {
 
-    //state안에 id : 액션.data 인게 있냐?
-    let found = state.findIndex((a)=>{ return a.id === 액션.data.id });
+    let found = state.findIndex((a)=>{ return a.id === action.data.id });
 
     if ( found >= 0 ){
 
@@ -43,32 +43,22 @@ function reducer(state = 초기값, 액션) {
 
     } else {
       let copy = [...state];
-      copy.push(액션.data);
+      copy.push(action.data);
       return copy
     }
 
-    
-
-  } else if (액션.type === 'add') {
+  } else if (action.type === 'add') {
 
     let copy = [...state];
-    copy[액션.data].quan++;
+    copy[action.data].quan++;
     return copy
 
 
-  } else if (액션.type === 'subtract') {
+  } else if (action.type === 'subtract') {
     let copy = [...state];
-    copy[액션.data].quan--;
+    copy[action.data].quan--;
     return copy
   } 
-  
-  //여기부터 테스트
-  // else if ( 액션.type === '테스트입력') {
-  //   let copy = [...state] ; 
-  //   copy[2] = 액션.data;
-  //   return copy 
-  // }
-  
   
   else {
     return state
@@ -76,10 +66,6 @@ function reducer(state = 초기값, 액션) {
 }
 
 let store = createStore(combineReducers({ reducer, reducer2 }));
-
-
-
-
 
 ReactDOM.render(
   <React.StrictMode>
@@ -100,56 +86,3 @@ serviceWorker.register();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import {Provider} from 'react-redux';
-// import { createStore } from 'redux';
-
-// let store = createStore(()=>{ return [{ id : 0, name : '이쁜신발', quan : 1}] });
-
-// let store = createStore(combineReducers({reducer,reducer2}))
-
-// function reducer(state = store2, 액션){
-//   console.log('이건리듀서안의 코드에염', state, 액션);
-
-//   if (액션.type === '증가') {
-//     let 새거 = [...state];
-//     새거[0].quan++;
-//     return 새거
-//   } else {
-//     return state
-//   }
-
-// }
-
-// function reducer2(state = { name : 'park' }, 액션){
-//   console.log('');
-//   if (액션.type === '이름Kim') {
-//     let 새거 = {...state};
-//     새거.name = 'Kim';
-//     return 새거
-//   } else {
-//     return state
-//   }
-// }
-
-
-// let found = state.findIndex(a => a.id === 액션.data.id );
-// if ( found >= 0 ) {
-//   let copy = [...state];
-//   copy[found].quan++
-//   return copy
-// } else {

@@ -35,7 +35,7 @@ function Detail(props) {
   useEffect(() => {
 
     let 타이머 = setTimeout(() => { setAlert(false) }, 2000);
-    console.log('안녕');
+
     return () => { clearTimeout(타이머) }
   }, []);
 
@@ -80,7 +80,7 @@ function Detail(props) {
           <button className="btn btn-danger" onClick={() => { 
 
             props.setRemaining([9, 11, 12]);
-            props.dispatch({type : '항목추가', data : {id:product.id, name:product.title, quan:1} });
+            props.dispatch({type : 'addshoes', data : {id:product.id, name:product.title, quan:1} });
             history.push('/cart');
             
           }}>order</button>

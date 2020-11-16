@@ -34,7 +34,7 @@ function Cart(props) {
         </tbody>
       </Table>
 
-
+    {/* alert box  */}
       { props.alertBox === true
         ? (<div className="my-alert2">
           <p>alert box 
@@ -51,7 +51,7 @@ function Cart(props) {
 
 
 function mapDispatchToProps (state){
-  //console.log(state);
+
   return {
     state : state.reducer,
     alertBox : state.reducer2
